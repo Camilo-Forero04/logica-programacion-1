@@ -38,15 +38,25 @@ function preguntarNumero(num){
 
 function sonIguales(nums){
     
+    let cont = 0;
+    let todosIguales = true;
+
     for(let i = 0; i < nums.length; i++){
         for(let j = i+1; j < nums.length; j++){
-            if(nums[i] == nums[j]){
-                console.log("Los numeros son iguales");
-                return true
+            if(nums[i] == nums[j]){ 
+                cont += 1;
+                console.log(`Hay ${cont} numeros repetidos`);
+            }else if(todosIguales == true){
+                todosIguales = false;
             }
         }
     }
-    return false;
+
+    if(todosIguales==true){
+        console.log("Los numeros estan repetidos");
+    }
+
+    return todosIguales;
 }
 
 function ordenarNumeroDsc(nums){
@@ -95,14 +105,19 @@ function ordenarNumeroAsc(nums){
     return numsAsc;
 }
 
-function main(){
-    
-    const nums = [];
+function llenArrray(nums){
     for(let i = 0; i < 3; i++){
         nums.push(preguntarNumero(i+1));
     }
+}
+function main(){
+    
+    const nums = [];
+
+    llenArrray(nums);
    
     const numsAux = [...nums] // forma de copiar un arreglo (spread operator)
+
     if(!sonIguales(nums)){
         console.log(ordenarNumeroAsc(nums));
         console.log(ordenarNumeroDsc(numsAux)); 
